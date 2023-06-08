@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Badge, Card, Col, Container, Row } from "react-bootstrap";
 import { TodoContext } from "../contexts/TodoContext";
 
 export default function Home() {
@@ -8,7 +8,10 @@ export default function Home() {
   return (
     <Container>
       <h1 className="my-3">Your todos</h1>
-      <CardGroup todos={todos} />
+
+      <Row>
+        <CardGroup todos={todos} />
+      </Row>
     </Container>
   );
 }
@@ -16,16 +19,16 @@ export default function Home() {
 function CardGroup({ todos }) {
   return todos.map((todo) => {
     return (
-      <Row key={todo.key}>
-        <Col md={4}>
-          <Card className="my-3">
-            <Card.Body>
-              <Card.Title>{todo.title}</Card.Title>
-              <Card.Text>{todo.description}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      <Col md={4} key={todo.key}>
+        <Card className="my-3">
+          <Card.Body>
+            <Card.Title>{todo.title}</Card.Title>
+            <Card.Text>{todo.description}</Card.Text>
+            {todo.completed && <Badge bg="success">Completed</Badge>}
+            {!todo.completed && <Badge bg="warning">Not Completed</Badge>}
+          </Card.Body>
+        </Card>
+      </Col>
     );
   });
 }
