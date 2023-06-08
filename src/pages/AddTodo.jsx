@@ -10,7 +10,12 @@ export default function AddTodo() {
   return (
     <Container>
       <h1 className="my-3">Add Todo</h1>
-      <Form>
+      <Form
+        onSubmit={(e) => {
+          // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+          e.preventDefault();
+        }}
+      >
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -18,6 +23,7 @@ export default function AddTodo() {
             onChange={(e) => setTitle(e.target.value)}
             type="text"
             placeholder="Get software developer job"
+            required
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="description">
@@ -28,9 +34,12 @@ export default function AddTodo() {
             as="textarea"
             rows={3}
             placeholder={`1. Create amazing project\n2. Apply to Google & Netflix\n3. Crush interview`}
+            required
           />
         </Form.Group>
-        <Button variant="primary">Submit</Button>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </Form>
     </Container>
   );
