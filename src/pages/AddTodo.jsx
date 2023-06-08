@@ -8,19 +8,20 @@ import { useNavigate } from "react-router-dom";
 export default function AddTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [completed, setCompleted] = useState(false);
   const setTodos = useContext(TodoContext).setTodos;
   const todos = useContext(TodoContext).todos;
   const navigate = useNavigate();
+
   return (
     <Container>
       <h1 className="my-3">Add Todo</h1>
       <Form
         onSubmit={(e) => {
-          // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
           e.preventDefault();
           setTodos([
             ...todos,
-            { id: Date.now(), title, description, completed: false },
+            { id: Date.now(), title, description, completed },
           ]);
           navigate("/");
         }}
@@ -46,6 +47,14 @@ export default function AddTodo() {
             required
           />
         </Form.Group>
+        <Form.Check
+          type="checkbox"
+          id="completed"
+          label="Mark as completed"
+          checked={completed}
+          onChange={(e) => setCompleted(e.target.checked)}
+          className="mb-3"
+        />
         <Button variant="primary" type="submit">
           Submit
         </Button>
