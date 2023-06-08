@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import { TodoContext } from "../contexts/TodoContext";
 
 export default function AddTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const setTodos = useContext(TodoContext).setTodos;
+  const todos = useContext(TodoContext).todos;
   return (
     <Container>
       <h1 className="my-3">Add Todo</h1>
@@ -14,6 +16,7 @@ export default function AddTodo() {
         onSubmit={(e) => {
           // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
           e.preventDefault();
+          setTodos([...todos, { id: Date.now(), title, description }]);
         }}
       >
         <Form.Group className="mb-3" controlId="title">
