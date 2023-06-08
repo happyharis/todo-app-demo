@@ -3,12 +3,14 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { TodoContext } from "../contexts/TodoContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AddTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const setTodos = useContext(TodoContext).setTodos;
   const todos = useContext(TodoContext).todos;
+  const navigate = useNavigate();
   return (
     <Container>
       <h1 className="my-3">Add Todo</h1>
@@ -20,6 +22,7 @@ export default function AddTodo() {
             ...todos,
             { id: Date.now(), title, description, completed: false },
           ]);
+          navigate("/");
         }}
       >
         <Form.Group className="mb-3" controlId="title">

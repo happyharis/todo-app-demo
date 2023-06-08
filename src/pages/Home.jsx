@@ -19,7 +19,7 @@ export default function Home() {
 function CardGroup({ todos }) {
   return todos.map((todo) => {
     return (
-      <Col md={4} key={todo.key}>
+      <Col md={4} key={todo.id}>
         <Card className="my-3">
           <Card.Body>
             <Card.Title>{todo.title}</Card.Title>
