@@ -16,7 +16,10 @@ export default function AddTodo() {
         onSubmit={(e) => {
           // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
           e.preventDefault();
-          setTodos([...todos, { id: Date.now(), title, description }]);
+          setTodos([
+            ...todos,
+            { id: Date.now(), title, description, completed: false },
+          ]);
         }}
       >
         <Form.Group className="mb-3" controlId="title">
