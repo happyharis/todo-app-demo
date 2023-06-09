@@ -17,8 +17,8 @@ export default function AddTodo() {
     <Container>
       <h1 className="my-3">Add Todo</h1>
       <Form
-        onSubmit={(e) => {
-          e.preventDefault();
+        onSubmit={function (event) {
+          event.preventDefault();
           setTodos([
             ...todos,
             { id: Date.now(), title, description, completed },
