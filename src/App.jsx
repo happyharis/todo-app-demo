@@ -5,6 +5,7 @@ import { TodoContext } from "./contexts/TodoContext";
 import AddTodo from "./pages/AddTodo";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
+import EditTodo from "./pages/EditTodo";
 
 function Layout() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="add" element={<AddTodo />} />
+            <Route path="/todo/:id" element={<EditTodo />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>

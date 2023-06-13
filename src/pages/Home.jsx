@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Badge, Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { TodoContext } from "../contexts/TodoContext";
 
 export default function Home() {
@@ -20,11 +20,13 @@ function CardGroup({ todos }) {
     const bg = completed ? "success" : "danger";
     return (
       <Col md={4} key={todo.id}>
-        <Card className="my-3">
+        <Card border={bg} className="my-3">
+          <Card.Header>{!completed && "Not"} Completed</Card.Header>
           <Card.Body>
             <Card.Title>{todo.title}</Card.Title>
             <Card.Text>{todo.description}</Card.Text>
-            <Badge bg={bg}>{!completed && "Not"} Completed</Badge>
+            <Card.Link href={`todo/${todo.id}`}>Edit</Card.Link>
+            <br />
           </Card.Body>
         </Card>
       </Col>
