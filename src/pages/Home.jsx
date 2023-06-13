@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
-import { Card, Col, Container, Row, Modal, Button } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import TodoCard from "../components/TodoCard";
 import { TodoContext } from "../contexts/TodoContext";
 
 export default function Home() {
@@ -39,24 +40,12 @@ function CardGroup({ todos }) {
   return (
     <>
       {todos.map((todo) => {
-        const completed = todo.completed;
-        const bg = completed ? "success" : "danger";
         return (
           <Col md={4} key={todo.id}>
-            <Card border={bg} className="my-3">
-              <Card.Header>{!completed && "Not"} Completed</Card.Header>
-              <Card.Body>
-                <Card.Title>{todo.title}</Card.Title>
-                <Card.Text>{todo.description}</Card.Text>
-                <Card.Link href={`todo/${todo.id}`}>Edit</Card.Link>
-                <Card.Link
-                  href="#"
-                  onClick={() => handleShowDeleteModal(todo.id)}
-                >
-                  Delete
-                </Card.Link>
-              </Card.Body>
-            </Card>
+            <TodoCard
+              todo={todo}
+              onClick={() => handleShowDeleteModal(todo.id)}
+            />
           </Col>
         );
       })}
